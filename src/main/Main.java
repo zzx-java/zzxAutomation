@@ -62,12 +62,28 @@ public class Main {
         parameter = getJson.getParameter(jsonObject);
         //发起请求
         String url = null;
-        url = protocol + "://" + ip + ":" + port + "/" + path;
+        //区分ip与url请求：端口为空
+        if (port == "") {
+            url = protocol + "://" + ip + "/" + path;
+        }else {
+            url = protocol + "://" + ip  + ":" + port + "/" + path;
+        }
         System.out.println("url:" + url);
         String result1 = "";
         HttpURLConnectionUtil httpURLConnectionUtil = new HttpURLConnectionUtil();
         result1 = HttpURLConnectionUtil.httpPost(url,method,header,parameter);
         System.out.println("请求结果" + result1);
+        //断言
+        JSONObject result2 = JSONObject.fromObject(result1);
+        JSONObject result3 = result2.getJSONObject("data");
+        System.out.println(result3.toString());
+        JSONObject result4 = result3.getJSONObject("rightMid");
+        System.out.println(result4.toString());
+        String result5 = result4.getString("image");
+        if (result5.equals("https://fanyiapp.cdn.bcebos.com/cms/image/1908390fe73dfb5890d98e3ec75f21f5.png")) {
+            System.out.println("断言成功");
+        }
+
 
         /*
         //进行httppost请求
@@ -80,7 +96,5 @@ public class Main {
         result1 = HttpURLConnectionUtil.httpPost(url,method,header,parameter);
         System.out.println("请求结果" + result1);
          */
-
-
     }
 }

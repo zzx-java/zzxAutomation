@@ -30,7 +30,7 @@ public class HttpURLConnectionUtil {
             //设置连接超时时间
             connection.setReadTimeout(15000);
             //添加header信息
-            connection.setRequestProperty("accessToken","eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aGFuZ3ppeGluIiwiYXVkIjoiMTc0MDAzMTU5NTY0Mjg5IiwiZXhwIjoxNjQ0OTI5NzExfQ.PCAdyJJPwBdpYuXoTaKq9luYkvPJ1LS-9aXARqLOoYI");
+            //connection.setRequestProperty("accessToken","eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aGFuZ3ppeGluIiwiYXVkIjoiMTc0MDAzMTU5NTY0Mjg5IiwiZXhwIjoxNjQ0OTI5NzExfQ.PCAdyJJPwBdpYuXoTaKq9luYkvPJ1LS-9aXARqLOoYI");
             //开始连接
             connection.connect();
             //获取响应数据
