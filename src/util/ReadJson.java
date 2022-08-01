@@ -1,20 +1,12 @@
 package util;
 
-import dao.DaoJsonList;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class ReadJson {
-    public DaoJsonList daoJsonList;
-    //构造方法
-    public ReadJson() {
-        daoJsonList = new DaoJsonList();
-    }
     //读取json文件
     public static String readJsonFile(String filePath) {
         String jsonStr = null;
@@ -43,7 +35,6 @@ public class ReadJson {
         Iterator<String> keys = jsonObject.keySet().iterator();
         while (keys.hasNext()) {
             String key = keys.next();
-            System.out.println(key);
             map.put(key,jsonObject.getString(key));
         }
         return map;

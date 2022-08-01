@@ -1,4 +1,4 @@
-package connection;
+package util;
 
 import net.sf.json.JSONObject;
 
@@ -11,64 +11,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class HttpURLConnectionUtil {
-
-    //httpget请求
-    public static String httpGet(String httpUrl) {
-        //输出传递参数
-        System.out.println("传递参数url:" + httpUrl);
-        //创建结果对象
-        HttpURLConnection connection = null;
-        InputStream is = null;
-        BufferedReader br = null;
-        StringBuffer result = new StringBuffer();
-        try {
-            //创建连接
-            URL url = new URL(httpUrl);
-            connection = (HttpURLConnection) url.openConnection();
-            //设置请求方式
-            connection.setRequestMethod("GET");
-            //设置连接超时时间
-            connection.setReadTimeout(15000);
-            //添加header信息
-            //connection.setRequestProperty("accessToken","eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aGFuZ3ppeGluIiwiYXVkIjoiMTc0MDAzMTU5NTY0Mjg5IiwiZXhwIjoxNjQ0OTI5NzExfQ.PCAdyJJPwBdpYuXoTaKq9luYkvPJ1LS-9aXARqLOoYI");
-            //开始连接
-            connection.connect();
-            //获取响应数据
-            if (connection.getResponseCode() == 200) {
-                is = connection.getInputStream();
-                if (null != is) {
-                    br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
-                    String temp =null;
-                    while (null != (temp = br.readLine())) {
-                        result.append(temp);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (null != br) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (null != is) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            //关闭远程连接
-            connection.disconnect();
-        }
-        return result.toString();
-    }
-
-    //httppost请求
-    public static String httpPost(String httpUrl, String method, Map<String,String> header, String parameter) {
+    //http请求
+    public static String http(String httpUrl, String method, Map<String,String> header, String parameter) {
         StringBuffer stringBuffer = new StringBuffer();
         HttpURLConnection httpURLConnection = null;
         OutputStream output = null;
@@ -96,7 +40,7 @@ public class HttpURLConnectionUtil {
                 httpURLConnection.setRequestProperty(key,header.get(key));
             }
             //设置请求参数
-            if (parameter != null && parameter.equals("")) {
+            if (parameter != null && !parameter.equals("")) {
                 output = httpURLConnection.getOutputStream();
                 output.write(parameter.getBytes("UTF-8"));
             }
@@ -106,7 +50,7 @@ public class HttpURLConnectionUtil {
             if (httpURLConnection.getResponseCode() == 200) {
                 input = httpURLConnection.getInputStream();
                 if (null != input) {
-                    bufferedReader = new BufferedReader(new InputStreamReader(input,"GBK"));
+                    bufferedReader = new BufferedReader(new InputStreamReader(input,"UTF-8"));
                     String temp = null;
                     while (null != (temp = bufferedReader.readLine())) {
                         stringBuffer.append(temp);

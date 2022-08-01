@@ -1,10 +1,14 @@
 {
   "method": "GET",
   "protocol":"https",
-  "ip":"fanyi.baidu.com",
+  "ip":"news.10jqka.com.cn",
   "port":"",
-  "path":"pc/config?_=1655382899181",
+  "path":"tapp/news/headline/ths",
   "headers":{
+    "Content-type": "application/json;charset=UTF-8",
+    "accept": "*/*",
+    "connection": "Keep-Alive",
+    "user-agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat"
   },
   "parameters":{
   }

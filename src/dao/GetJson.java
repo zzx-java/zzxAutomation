@@ -1,19 +1,13 @@
-package connection;
+package dao;
 
 import com.google.gson.Gson;
-import dao.DaoJsonList;
 import net.sf.json.JSONObject;
 import util.ReadJson;
-import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 public class GetJson {
-    public DaoJsonList daoJsonList;
-    //构造方法
-    public GetJson() {
-        daoJsonList = new DaoJsonList();
-    }
+
     //获取请求方法
     public String getMethod(JSONObject jsonObject) {
         String method = null;
