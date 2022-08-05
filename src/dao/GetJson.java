@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import net.sf.json.JSONObject;
 import util.ReadJson;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class GetJson {
@@ -49,6 +51,24 @@ public class GetJson {
         JSONObject parameterJSONObject = jsonObject.getJSONObject("parameters");
         Gson gson = new Gson();
         String parameterString = gson.toJson(parameterJSONObject);
+        if (parameterString.equals("{}")) {
+            parameterString = null;
+        }
         return parameterString;
+    }
+    //获取校验信息
+    public List<String> getCheck(JSONObject jsonObject) {
+        JSONObject checkJSONObject = jsonObject.getJSONObject("check");
+        String code = checkJSONObject.getString("code");
+        JSONObject result = checkJSONObject.getJSONObject("result");
+        Gson gson = new Gson();
+        String resultString = gson.toJson(result);
+        if (resultString.equals("{}")) {
+            resultString = null;
+        }
+        List<String>  check= new ArrayList<String>();
+        check.add(code);
+        check.add(resultString);
+        return check;
     }
 }

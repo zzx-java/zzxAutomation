@@ -1,4 +1,4 @@
-package util;
+package dao;
 
 import net.sf.json.JSONObject;
 
@@ -7,17 +7,20 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class HttpURLConnectionUtil {
     //http请求
-    public static String http(String httpUrl, String method, Map<String,String> header, String parameter) {
+    public static List<String> http(String httpUrl, String method, Map<String,String> header, String parameter) {
         StringBuffer stringBuffer = new StringBuffer();
         HttpURLConnection httpURLConnection = null;
         OutputStream output = null;
         InputStream input = null;
         BufferedReader bufferedReader = null;
+        String code = null;
         try {
             URL url = new URL(httpUrl);
             httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -46,6 +49,8 @@ public class HttpURLConnectionUtil {
             }
             //建立连接
             httpURLConnection.connect();
+            //获取接口响应code
+            code = new Integer(httpURLConnection.getResponseCode()).toString();
             //读取响应
             if (httpURLConnection.getResponseCode() == 200) {
                 input = httpURLConnection.getInputStream();
@@ -81,6 +86,10 @@ public class HttpURLConnectionUtil {
             //关闭连接
             httpURLConnection.disconnect();
         }
-        return stringBuffer.toString();
+        List<String> checkResult = new ArrayList<String>();
+        checkResult.add(code);
+        String result = stringBuffer.toString();
+        checkResult.add(result);
+        return checkResult;
     }
 }
