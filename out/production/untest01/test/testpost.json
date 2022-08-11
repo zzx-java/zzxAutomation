@@ -1,9 +1,9 @@
 {
-  "method": "GET",
+  "method": "POST",
   "protocol":"https",
-  "ip":"news.10jqka.com.cn",
+  "ip":"eq.10jqka.com.cn",
   "port":"",
-  "path":"tapp/news/headline/ths",
+  "path":"wechatApplication/search/searchIndex",
   "headers":{
     "Content-type": "application/json;charset=UTF-8",
     "accept": "*/*",
@@ -13,8 +13,6 @@
   "parameters":null,
   "check": {
     "code": 200,
-    "result": {
-      "msg": "成功"
-    }
+    "result": null
   }
 }

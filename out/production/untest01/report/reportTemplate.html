@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- 页面标题 -->
+    <title>测试报告</title>
+</head>
+<script>
+    function btn_success() {
+        var show_case = document.getElementById("show_case");
+        show_case.innerHTML="<span>成功</span>"
+    }
+    function btn_fail() {
+        var show_case = document.getElementById("show_case");
+        show_case.innerHTML="<span>失败</span>"
+    }
+    function btn_wrong() {
+        var show_case = document.getElementById("show_case");
+        show_case.innerHTML="<span>错误</span>"
+    }
+</script>
+<body>
+<!-- 标题目录 -->
+<div style="background: darkgray;height: 50px">
+    <p style="text-align: center">自动化测试报告</p>
+</div>
+<!-- 统计信息 -->
+<div style="text-align: center">
+    <!-- 基础信息 -->
+    <div style="display: inline-block">
+        <div>
+            <p>测试信息统计</p>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>测试用例数</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>通过</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>失败</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>错误</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>开始时间</td>
+                    <td>年:月:日 时:分:秒</td>
+                </tr>
+                <tr>
+                    <td>结束时间</td>
+                    <td>年:月:日 时:分:秒</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+测试用例
+<div>
+    <!-- 用例tab栏 -->
+    <div>
+        <button onclick="btn_success()">成功</button>
+        <button onclick="btn_fail()">失败</button>
+        <button onclick="btn_wrong()">错误</button>
+    </div>
+    <!-- 用例列表 -->
+    <div id ="show_case">
+        <span>成功</span>
+    </div>
+</div>
+
+</body>
+</html>

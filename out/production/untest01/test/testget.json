@@ -13,6 +13,8 @@
   "parameters":null,
   "check": {
     "code": 200,
-    "result": null
+    "result": {
+      "msg": "成功"
+    }
   }
 }
