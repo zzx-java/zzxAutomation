@@ -6,6 +6,7 @@ import dao.HttpURLConnectionUtil;
 import net.sf.json.JSONObject;
 import util.ReadJson;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class GetHttp {
         return  jsonObject;
     }
     //获取接口参数发起请求
-    public String getHttp(JSONObject jsonObject) {
+    public Map<String,String> getHttp(JSONObject jsonObject) {
         //获取jsonkey值
         GetJson getJson = new GetJson();
         //获取json文件中请求方法
@@ -54,13 +55,15 @@ public class GetHttp {
         }else {
             url = protocol + "://" + ip  + ":" + port + "/" + path;
         }
-        String result = "";
+        Map<String,String> result = new HashMap<String,String>();
         HttpURLConnectionUtil httpURLConnectionUtil = new HttpURLConnectionUtil();
         List<String> checkResult =null;
         checkResult = HttpURLConnectionUtil.http(url,method,header,parameter);
         Verification verification = new Verification();
-        int type= 0;
-        type=verification.verificationAll(checkResult,check);
+        int type = 0;
+        type =verification.verificationAll(checkResult,check);
+        result.put("type",String.valueOf(type));
+        result.put("result",checkResult.get(1));
         return result;
     }
 }
