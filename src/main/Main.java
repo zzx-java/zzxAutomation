@@ -11,6 +11,9 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        int success = 0;
+        int fail = 0;
+        int wrong = 0;
         //获取文件路径下所有文件目录
         GetFileName getFileName = new GetFileName();
         //文件路径
@@ -23,6 +26,16 @@ public class Main {
                 JSONObject jsonObject = getHttp.getTxt(route+"\\"+txtList.get(i));
                 Map<String,String> result = new HashMap<String,String>();
                 result = getHttp.getHttp(jsonObject);
+                switch (Integer.parseInt(result.get("type"))) {
+                    case 1:
+                        success = success+1;
+                        break;
+                    case 2:
+                        fail = fail+1;
+                        break;
+                    case 3:
+                        wrong = wrong+1;
+                }
                 System.out.println(txtList.get(i)+"请求响应类型：" +result.get("type"));
                 System.out.println(txtList.get(i)+"请求响应结果：" +result.get("result"));
             }
@@ -31,6 +44,6 @@ public class Main {
             System.out.println("文件路径不存在！");
         }
         GetReport getReport = new GetReport();
-        getReport.outReport();
+        getReport.outReport(success,fail,wrong);
     }
 }

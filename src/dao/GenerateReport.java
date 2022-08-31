@@ -6,7 +6,7 @@ import java.io.PrintStream;
 
 public class GenerateReport {
     //填充测试报告
-    public StringBuilder enerate() {
+    public StringBuilder enerate(int s,int f,int w) {
         //存储html字符串
         StringBuilder stringHtml = new StringBuilder();
 
@@ -49,24 +49,37 @@ public class GenerateReport {
                 "            <table>\n" +
                 "                <tr>\n" +
                 "                    <td>测试用例数</td>\n" +
-                "                    <td>50</td>\n" +
+                "                    <td>"
+        );
+        stringHtml.append(s+f+w);
+        stringHtml.append("</td>\n" +
                 "                </tr>\n" +
                 "                <tr>\n" +
                 "                    <td>通过</td>\n" +
-                "                    <td>50</td>\n" +
+                "                    <td>"
+        );
+        stringHtml.append(s);
+        stringHtml.append("</td>\n" +
                 "                </tr>\n" +
                 "                <tr>\n" +
                 "                    <td>失败</td>\n" +
-                "                    <td>50</td>\n" +
+                "                    <td>"
+        );
+        stringHtml.append(f);
+        stringHtml.append("</td>\n" +
                 "                </tr>\n" +
                 "                <tr>\n" +
                 "                    <td>错误</td>\n" +
-                "                    <td>50</td>\n" +
+                "                    <td>"
+        );
+        stringHtml.append(w);
+        stringHtml.append("</td>\n" +
                 "                </tr>\n" +
                 "            </table>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
-                "</div>\n");
+                "</div>"
+        );
         //测试用例
         stringHtml.append("<div>\n" +
                 "    <!-- 用例tab栏 -->\n" +
